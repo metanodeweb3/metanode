@@ -1,0 +1,6 @@
+{
+  "name": "Metanode Hardware Matcher",
+  "description": "A Web3 node hardware compatibility scanner that matches user RAM and storage configurations to runnable crypto nodes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
