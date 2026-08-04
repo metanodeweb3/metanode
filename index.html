@@ -241,10 +241,13 @@
       letter-spacing: 0.03em;
       margin-top: 0.25rem;
       line-height: 1;
-      white-space: nowrap;
       width: 100%;
       display: flex;
       justify-content: space-between;
+    }
+
+    .brand-subtitle span {
+      white-space: nowrap;
     }
 
     .header-status {
@@ -719,6 +722,43 @@
       transform: translateY(-1px);
     }
 
+    .scan-btn.is-scanning {
+      opacity: 0.9;
+      cursor: wait;
+      pointer-events: none;
+      background-color: var(--accent-green);
+    }
+
+    .spin-icon {
+      animation: btnSpin 0.8s linear infinite;
+    }
+
+    @keyframes btnSpin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .scan-btn.is-complete {
+      background-color: #00e676;
+      box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+      animation: successPulse 0.4s ease;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(0.97); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .match-count-highlight {
+      animation: countHighlight 0.8s ease;
+    }
+
+    @keyframes countHighlight {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); color: var(--accent-green); text-shadow: 0 0 12px var(--accent-green-glow); }
+      100% { transform: scale(1); }
+    }
+
     /* Filters & Tools Bar */
     .filters-bar {
       display: flex;
@@ -891,21 +931,22 @@
         flex-shrink: 0;
       }
       .brand-text-block {
+        width: max-content;
         max-width: calc(100% - 48px);
-        align-items: flex-start;
+        align-items: stretch;
       }
       .brand-text-block h1 {
-        font-size: 1.15rem;
-        white-space: normal;
-        word-break: break-word;
+        font-size: 1.1rem;
+        white-space: nowrap;
         line-height: 1.2;
       }
       .brand-subtitle {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
-        white-space: normal;
-        word-break: break-word;
+        font-size: clamp(0.48rem, 2.2vw, 0.58rem);
+        letter-spacing: 0.02em;
         margin-top: 0.2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
       }
       .header-status {
         width: 100%;
@@ -957,10 +998,14 @@
         flex-direction: column;
         text-align: center;
         align-items: center;
-        gap: 0.75rem;
+        gap: 1rem;
+      }
+      .footer-friends {
+        justify-content: center;
       }
       .footer-links {
         justify-content: center;
+        gap: 0.6rem 1.25rem;
       }
     }
 
@@ -1419,6 +1464,55 @@
       letter-spacing: 0.01em;
     }
 
+    .footer-friends-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0.25rem 0;
+    }
+
+    .footer-friends {
+      font-size: 0.74rem;
+      color: var(--text-dark-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      padding: 0.45rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+    }
+
+    .friends-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .friends-link {
+      color: var(--accent-green);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .friends-link:hover {
+      color: var(--accent-green-hover);
+      text-decoration: underline;
+      text-shadow: 0 0 8px var(--accent-green-glow);
+    }
+
+    .friends-bullet {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.65rem;
+    }
+
     .footer-links {
       display: flex;
       gap: 1.5rem;
@@ -1571,11 +1665,6 @@
       </div>
 
       <div class="header-status">
-        <div class="status-badge">
-          <div class="status-value" id="priceSyncStatus">
-            <span class="pulse-dot"></span> Live Market Sync Active
-          </div>
-        </div>
         <div class="custom-currency-dropdown" id="currencyDropdown">
           <select id="currencySelect" style="display:none;" title="Select Display Currency">
             <option value="USD">USD ($)</option>
@@ -1603,11 +1692,11 @@
             <!-- Options dynamically built in JS -->
           </div>
         </div>
-        <button class="btn-small-outline" id="refreshPricesBtn">
-          🔄 Refresh Prices
-        </button>
         <button class="btn-small-outline" id="shareProfileBtn">
           🔗 Share Config
+        </button>
+        <button class="btn-small-outline" id="feedbackBtn" title="Send Feedback or Request Functionality">
+          💬 Feedback
         </button>
         <button class="btn-small-outline" id="addNodeBtn">
           ➕ Add Protocol
@@ -1762,7 +1851,7 @@
         <!-- Loading State -->
         <div id="scannerLoader" class="scanner-loader">
           <div class="spinner"></div>
-          <p style="color: var(--accent-green); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Analyzing specifications across 30+ Web3 protocols...</p>
+          <p style="color: var(--accent-green); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Analyzing specifications across Web3 protocols...</p>
         </div>
 
         <!-- Network Cards Grid -->
@@ -1800,15 +1889,64 @@
     </div>
   </div>
 
+  <!-- Modal for Feedback & Requests -->
+  <div class="modal-overlay" id="feedbackModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">💬 Feedback & Feature Requests</div>
+        <button class="close-btn" id="closeFeedbackModalBtn" type="button">&times;</button>
+      </div>
+      <form class="modal-form" id="feedbackForm">
+        <input type="hidden" name="access_key" value="101204ff-773c-40c2-a94d-df2e8a874784" />
+        <input type="hidden" name="subject" id="feedbackSubjectHidden" value="[Metanode Feedback] New Request" />
+        <input type="checkbox" name="botcheck" style="display: none;" />
+
+        <label style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Feedback Type</label>
+        <select id="feedbackType" name="category" class="input-field" required>
+          <option value="Feature Request">✨ Feature Request</option>
+          <option value="Bug Report">🐛 Bug Report</option>
+          <option value="General Feedback">💬 General Feedback</option>
+        </select>
+
+        <label style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-top: 0.5rem;">Your Email (Optional)</label>
+        <input type="email" name="email" class="input-field" placeholder="your.email@domain.com (if you'd like a response)" />
+
+        <label style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-top: 0.5rem;">Message / Request Details</label>
+        <textarea name="message" class="input-field" rows="4" placeholder="Tell us what functionality you'd like to see, or describe any issue..." required style="resize: vertical; min-height: 90px; font-family: inherit;"></textarea>
+
+        <div id="feedbackStatus" style="display: none; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; margin-top: 0.5rem; text-align: center;"></div>
+
+        <button type="submit" id="feedbackSubmitBtn" class="scan-btn" style="margin-top: 0.75rem;">
+          <span id="feedbackSubmitText">Send Feedback</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-top">
         <p class="footer-copy">&copy; 2026 Metanode Protocols &bull; Decentralized Infrastructure Matching Engine</p>
         <div class="footer-links">
+          <a href="#" id="feedbackFooterLink">💬 Feedback & Requests</a>
           <a href="#" id="exportDataLink">Export Node DB (JSON)</a>
           <a href="#" id="resetDefaultsLink">Reset Defaults</a>
           <a href="https://coingecko.com" target="_blank" rel="noopener noreferrer">Market Data powered by CoinGecko</a>
+        </div>
+      </div>
+      <div class="footer-friends-row">
+        <div class="footer-friends">
+          <span class="friends-label">Friends of Metanode:</span>
+          <a href="https://www.mikegalactic.com" target="_blank" rel="noopener noreferrer" class="friends-link">
+            MikeGalactic
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <span class="friends-bullet">&bull;</span>
+          <a href="https://evolvedpapercraft.co.uk" target="_blank" rel="noopener noreferrer" class="friends-link">
+            Evolved Papercraft
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
       </div>
       <div class="footer-disclosure">
@@ -1833,7 +1971,7 @@
       PRE: 0.025
     };
 
-    // Comprehensive 30+ Protocol Database
+    // Indexed Web3 Protocols Database
     const INITIAL_NETWORKS = [
       {
         id: 'helium',
@@ -2123,6 +2261,18 @@
     const exportDataLink = document.getElementById('exportDataLink');
     const resetDefaultsLink = document.getElementById('resetDefaultsLink');
 
+    // Feedback Modal DOM References
+    const feedbackBtn = document.getElementById('feedbackBtn');
+    const feedbackFooterLink = document.getElementById('feedbackFooterLink');
+    const feedbackModal = document.getElementById('feedbackModal');
+    const closeFeedbackModalBtn = document.getElementById('closeFeedbackModalBtn');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackType = document.getElementById('feedbackType');
+    const feedbackSubjectHidden = document.getElementById('feedbackSubjectHidden');
+    const feedbackStatus = document.getElementById('feedbackStatus');
+    const feedbackSubmitBtn = document.getElementById('feedbackSubmitBtn');
+    const feedbackSubmitText = document.getElementById('feedbackSubmitText');
+
     // Stacker DOM References
     const stackRamVal = document.getElementById('stackRamVal');
     const stackRamBar = document.getElementById('stackRamBar');
@@ -2258,6 +2408,9 @@
       }
       summaryText.textContent = `${ram}GB RAM • ${storage} • ${cpu} Cores • ${curr.symbol}${electricityRate.value}/kWh (${curr.symbol}${powerCost}/mo power)`;
       updateStackerUI();
+      if (scanBtn && !scanBtn.classList.contains('is-scanning') && !scanBtn.classList.contains('is-complete')) {
+        setScanBtnState('rescan');
+      }
     }
 
     [ramSelect, storageSelect, cpuSelect, electricityRate, powerWatts].forEach(el => {
@@ -2276,7 +2429,7 @@
     // Update Live Token Prices in Ticker & Cards
     async function fetchLivePrices() {
       try {
-        priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Syncing Live Prices...`;
+        if (priceSyncStatus) priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Syncing Live Prices...`;
         const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana,flux,helium,pocket-network,filecoin,akash-network,arweave,near,avalanche-2&vs_currencies=usd');
         if (res.ok) {
           const data = await res.json();
@@ -2291,11 +2444,11 @@
           if (data['avalanche-2']) tokenPrices.AVAX = data['avalanche-2'].usd;
 
           updateTickerBar();
-          priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Live Prices Synced (${new Date().toLocaleTimeString()})`;
+          if (priceSyncStatus) priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Live Prices Synced (${new Date().toLocaleTimeString()})`;
           performScan();
         }
       } catch (err) {
-        priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Using Cached Market Rates`;
+        if (priceSyncStatus) priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Using Cached Market Rates`;
       }
     }
 
@@ -2357,16 +2510,16 @@
             🛒 Recommended Amazon Upgrades for this ${usedRam}GB RAM &amp; ${storageLabel} Rig Stack:
           </div>
           <a href="${buildAmazonSearchUrl(usedRam + 'GB RAM Upgrade Kit DDR4 DDR5')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Buy RAM Upgrade on Amazon">
-            🛒 Buy ${usedRam}GB RAM Kit →
+            🛒 Buy ${usedRam}GB RAM Kit (Amazon ↗)
           </a>
           <a href="${buildAmazonSearchUrl(storageLabel + ' NVMe PCIe Internal SSD')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Buy Storage Upgrade on Amazon">
-            💾 Buy ${storageLabel} NVMe SSD →
+            💾 Buy ${storageLabel} NVMe SSD (Amazon ↗)
           </a>
           <a href="${buildAmazonSearchUrl('Mini PC ' + usedRam + 'GB RAM ' + storageLabel + ' SSD')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Buy Mini PC Rig on Amazon">
-            🖥️ View Stacked Mini PC Rigs →
+            🖥️ Stacked Mini PC Rigs (Amazon ↗)
           </a>
           <a href="${buildAmazonSearchUrl('UPS Uninterruptible Power Supply Battery Backup for Node Server')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Buy UPS Power Backup on Amazon">
-            ⚡ Buy UPS Power Backup →
+            ⚡ Buy UPS Power Backup (Amazon ↗)
           </a>
         `;
         stackedNodesTags.appendChild(recsDiv);
@@ -2498,20 +2651,67 @@
       updateSummary();
     }
 
+    // Scan Button UI State Helper
+    let scanCompleteTimeout = null;
+
+    function setScanBtnState(state, matchCountNum = null) {
+      if (!scanBtn) return;
+      if (scanCompleteTimeout) clearTimeout(scanCompleteTimeout);
+
+      if (state === 'scanning') {
+        scanBtn.disabled = true;
+        scanBtn.classList.add('is-scanning');
+        scanBtn.classList.remove('is-complete');
+        scanBtn.innerHTML = `
+          <svg class="spin-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="32" stroke-dashoffset="10" opacity="0.35"></circle>
+            <path d="M12 2 a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+          <span>Scanning Networks...</span>
+        `;
+      } else if (state === 'complete') {
+        scanBtn.disabled = false;
+        scanBtn.classList.remove('is-scanning');
+        scanBtn.classList.add('is-complete');
+        
+        const countText = matchCountNum !== null ? ` (${matchCountNum} ${matchCountNum === 1 ? 'Match' : 'Matches'})` : '';
+        scanBtn.innerHTML = `
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span>✓ Scan Complete${countText}</span>
+        `;
+
+        scanCompleteTimeout = setTimeout(() => {
+          setScanBtnState('rescan');
+        }, 2500);
+      } else if (state === 'rescan' || state === 'ready') {
+        scanBtn.disabled = false;
+        scanBtn.classList.remove('is-scanning', 'is-complete');
+        scanBtn.innerHTML = `
+          <span>↻ Re-Scan Compatible Networks</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+        `;
+      }
+    }
+
     // Perform Scanning & Filtering
     function performScan() {
+      setScanBtnState('scanning');
       updateModeUI();
       const ram = parseInt(ramSelect.value, 10);
       const storageVal = storageSelect.value;
       const cpu = parseInt(cpuSelect.value, 10);
       const sortBy = sortSelect.value;
 
-      resultsGrid.style.display = 'none';
-      scannerLoader.style.display = 'block';
+      if (resultsGrid) resultsGrid.style.display = 'none';
+      if (scannerLoader) scannerLoader.style.display = 'block';
 
       setTimeout(() => {
-        scannerLoader.style.display = 'none';
-        resultsGrid.style.display = 'grid';
+        if (scannerLoader) scannerLoader.style.display = 'none';
+        if (resultsGrid) resultsGrid.style.display = 'grid';
 
         const sharedNodeBanner = document.getElementById('sharedNodeBanner');
 
@@ -2570,7 +2770,14 @@
         }
 
         renderResults(matched, ram, storageVal, cpu);
-      }, 250);
+        setScanBtnState('complete', matched.length);
+
+        if (matchCount) {
+          matchCount.classList.remove('match-count-highlight');
+          void matchCount.offsetWidth;
+          matchCount.classList.add('match-count-highlight');
+        }
+      }, 350);
     }
 
     // Render Cards
@@ -2680,13 +2887,13 @@
               <div class="hw-tier-title">Selected Hardware Tier (${ram}GB RAM / ${storageVal}):</div>
               <div class="affiliate-links">
                 <a href="${buildAmazonSearchUrl(ram + 'GB RAM Upgrade DDR4 DDR5')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Search Amazon for ${ram}GB RAM Upgrade">
-                  ⚡ ${ram}GB RAM Kit →
+                  ⚡ ${ram}GB RAM Kit (Amazon ↗)
                 </a>
                 <a href="${buildAmazonSearchUrl(storageVal + ' NVMe SSD Internal Storage')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Search Amazon for ${storageVal} SSD">
-                  💾 ${storageVal} SSD →
+                  💾 ${storageVal} SSD (Amazon ↗)
                 </a>
                 <a href="${buildAmazonSearchUrl('Mini PC ' + ram + 'GB RAM ' + storageVal)}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Search Mini PCs on Amazon">
-                  🖥️ ${ram}GB Mini PC →
+                  🖥️ ${ram}GB Mini PC (Amazon ↗)
                 </a>
               </div>
             </div>
@@ -2695,10 +2902,10 @@
               <div class="hw-tier-title">Baseline Protocol Minimums (${node.minRamGB}GB RAM / ${minStorageStr}):</div>
               <div class="affiliate-links">
                 <a href="${buildAmazonSearchUrl(node.minRamGB + 'GB RAM Upgrade DDR4 DDR5')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Search Amazon for Min ${node.minRamGB}GB RAM">
-                  ⚡ ${node.minRamGB}GB Min RAM →
+                  ⚡ ${node.minRamGB}GB Min RAM (Amazon ↗)
                 </a>
                 <a href="${buildAmazonSearchUrl(minStorageStr + ' NVMe SSD Internal Storage')}" target="_blank" rel="noopener noreferrer" class="affiliate-link" title="Search Amazon for Min ${minStorageStr} SSD">
-                  💾 ${minStorageStr} Min SSD →
+                  💾 ${minStorageStr} Min SSD (Amazon ↗)
                 </a>
               </div>
             </div>
@@ -2810,12 +3017,89 @@
       });
     }
 
-    scanBtn.addEventListener('click', performScan);
-    refreshPricesBtn.addEventListener('click', fetchLivePrices);
+    if (scanBtn) scanBtn.addEventListener('click', performScan);
+    if (refreshPricesBtn) refreshPricesBtn.addEventListener('click', fetchLivePrices);
 
     // Add Custom Node Modal Handlers
-    addNodeBtn.addEventListener('click', () => addNodeModal.style.display = 'flex');
-    closeModalBtn.addEventListener('click', () => addNodeModal.style.display = 'none');
+    if (addNodeBtn && addNodeModal) {
+      addNodeBtn.addEventListener('click', () => addNodeModal.style.display = 'flex');
+    }
+    if (closeModalBtn && addNodeModal) {
+      closeModalBtn.addEventListener('click', () => addNodeModal.style.display = 'none');
+    }
+    
+    // Feedback Modal Handlers
+    const openFeedback = (e) => {
+      if (e) e.preventDefault();
+      if (feedbackModal) feedbackModal.style.display = 'flex';
+    };
+    if (feedbackBtn) feedbackBtn.addEventListener('click', openFeedback);
+    if (feedbackFooterLink) feedbackFooterLink.addEventListener('click', openFeedback);
+    if (closeFeedbackModalBtn && feedbackModal) {
+      closeFeedbackModalBtn.addEventListener('click', () => feedbackModal.style.display = 'none');
+    }
+
+    // Overlay click to close modals
+    window.addEventListener('click', (e) => {
+      if (addNodeModal && e.target === addNodeModal) addNodeModal.style.display = 'none';
+      if (feedbackModal && e.target === feedbackModal) feedbackModal.style.display = 'none';
+    });
+
+    // Feedback Form Submission via Web3Forms
+    if (feedbackForm) {
+      feedbackForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const typeVal = feedbackType.value;
+        feedbackSubjectHidden.value = `[Metanode Feedback - ${typeVal}] New Request`;
+        
+        feedbackSubmitBtn.disabled = true;
+        feedbackSubmitText.textContent = 'Sending...';
+        feedbackStatus.style.display = 'none';
+
+        const formData = new FormData(feedbackForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          });
+
+          const result = await response.json();
+
+          if (response.status === 200 && result.success) {
+            feedbackStatus.style.display = 'block';
+            feedbackStatus.style.background = 'rgba(0, 200, 83, 0.15)';
+            feedbackStatus.style.border = '1px solid var(--accent-green)';
+            feedbackStatus.style.color = 'var(--accent-green)';
+            feedbackStatus.innerHTML = '🎉 <strong>Thank You!</strong> Your feedback has been sent directly to metapoolmike@gmail.com.';
+            
+            feedbackForm.reset();
+            setTimeout(() => {
+              feedbackModal.style.display = 'none';
+              feedbackStatus.style.display = 'none';
+            }, 3000);
+          } else {
+            throw new Error(result.message || 'Submission failed');
+          }
+        } catch (error) {
+          feedbackStatus.style.display = 'block';
+          feedbackStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+          feedbackStatus.style.border = '1px solid #ef4444';
+          feedbackStatus.style.color = '#f87171';
+          feedbackStatus.textContent = '⚠️ Failed to send feedback. Please try again or check your connection.';
+        } finally {
+          feedbackSubmitBtn.disabled = false;
+          feedbackSubmitText.textContent = 'Send Feedback';
+        }
+      });
+    }
     
     customNodeForm.addEventListener('submit', e => {
       e.preventDefault();

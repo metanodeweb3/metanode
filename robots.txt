@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://metanode.co.uk/sitemap.xml
