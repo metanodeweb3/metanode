@@ -15,6 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>METANODE INFRA — Web3 Infrastructure Engine</title>
   
+  <link rel="canonical" href="https://metanode.co.uk">
+  
   <!-- SEO Primary Meta Tags -->
   <meta name="description" content="Instantly match your server hardware specs (CPU, RAM, NVMe SSD, Bandwidth, GPU) against runnable Web3 blockchain nodes and DePIN networks. Calculate validator requirements, estimated ROI, and hardware setups for Ethereum, Solana, Akash, Render, Bitcoin, and more.">
   <meta name="keywords" content="web3 node hardware matcher, validator hardware requirements, ethereum node runner, solana validator specs, depin node calculator, crypto hardware compatibility, akash provider setup, node yield calculator">
@@ -24,15 +26,22 @@
   
   <!-- Open Graph / Facebook / Discord / LinkedIn -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metanode.co.uk">
   <meta property="og:site_name" content="Metanode Protocols">
   <meta property="og:title" content="METANODE INFRA — Web3 Infrastructure Engine">
   <meta property="og:description" content="Discover optimal crypto validator and DePIN node hardware requirements. Match CPU, RAM, and SSD specs to runnable Web3 network nodes.">
-  <meta property="og:image" content="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'><rect width='100%' height='100%' fill='%230b0e11'/><rect x='80' y='80' width='1040' height='470' rx='24' fill='%2315191e' stroke='%2300c853' stroke-width='2'/><text x='140' y='220' fill='%2300c853' font-family='sans-serif' font-weight='800' font-size='32'>METANODE PROTOCOLS</text><text x='140' y='320' fill='%23ffffff' font-family='sans-serif' font-weight='800' font-size='64'>Web3 Infrastructure Matcher</text><text x='140' y='400' fill='%239ca3af' font-family='sans-serif' font-size='28'>Match server specs to runnable validator nodes %26 calculate APY yields</text></svg>">
+  <meta property="og:image" content="og_image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="METANODE INFRA Web3 Hardware Matcher Social Banner">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Metanode Hardware Matcher — Web3 Infrastructure Engine">
+  <meta name="twitter:title" content="METANODE INFRA — Web3 Infrastructure Engine">
   <meta name="twitter:description" content="Match your server hardware specs to runnable Web3 nodes & DePIN protocols with instant compatibility & yield estimations.">
+  <meta name="twitter:image" content="og_image.png">
+  <meta name="twitter:image:alt" content="METANODE INFRA Web3 Hardware Matcher Social Banner">
   
   <!-- SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2312171d' stroke='%2300c853' stroke-width='1.5'/><text x='16' y='23' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='20' text-anchor='middle'>M</text></svg>">
@@ -449,9 +458,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 0.75rem;
       margin-bottom: 1.25rem;
       padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
     }
 
     .panel-title {
@@ -459,20 +470,30 @@
       font-weight: 800;
       color: var(--text-white);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      display: flex;
+      letter-spacing: 0.08em;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      line-height: 1.2;
+      margin: 0;
     }
 
     .live-feed-badge {
       font-size: 0.7rem;
       font-family: var(--font-mono);
+      font-weight: 600;
       color: var(--accent-green);
       background: rgba(0, 200, 83, 0.1);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      border: 1px solid rgba(0, 200, 83, 0.2);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 200, 83, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(0, 200, 83, 0.05);
+      align-self: center;
     }
 
     .form-grid-layout {
@@ -483,40 +504,97 @@
     }
 
     .form-row-top {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-
-    .form-row-bottom {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       gap: 1.25rem;
       width: 100%;
     }
 
-    .form-row-bottom .form-group {
-      flex: 0 1 320px;
-    }
-
-    @media (max-width: 768px) {
-      .form-row-top {
-        grid-template-columns: 1fr;
-      }
-      .form-row-bottom {
-        flex-direction: column;
-      }
-      .form-row-bottom .form-group {
-        width: 100%;
-        flex: 1 1 auto;
-      }
+    .form-row-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.25rem;
+      width: 100%;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
+      flex: 0 1 220px;
+      width: 220px;
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hardware-card {
+        padding: 1.15rem 1rem;
+      }
+      .panel-header {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .panel-title {
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+      }
+      .live-feed-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.55rem;
+        flex-shrink: 0;
+      }
+      .form-row-top, .form-row-bottom {
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-group {
+        width: 100%;
+        max-width: 320px;
+        flex: 1 1 auto;
+      }
+      .system-summary {
+        justify-content: center;
+        gap: 0.65rem;
+      }
+      .spec-pill {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.65rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hardware-card {
+        padding: 1rem 0.75rem;
+      }
+      .panel-header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .panel-title {
+        font-size: 0.72rem;
+        letter-spacing: 0.03em;
+      }
+      .live-feed-badge {
+        font-size: 0.62rem;
+        padding: 0.2rem 0.45rem;
+      }
+      .form-group {
+        max-width: 100%;
+      }
+      .spec-pill {
+        flex: 1 1 calc(50% - 0.5rem);
+        justify-content: center;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.5rem;
+      }
     }
 
     label {
@@ -1045,11 +1123,30 @@
 
     .card-header-row {
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.4rem;
       margin-bottom: 0.75rem;
-      min-height: 2.2rem;
+    }
+
+    .card-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .node-type-badge {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      padding: 0.25rem 0.55rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     .node-title {
@@ -1065,7 +1162,7 @@
       font-weight: 700;
       color: var(--accent-green);
       background: rgba(0, 200, 83, 0.13);
-      padding: 0.2rem 0.5rem;
+      padding: 0.25rem 0.55rem;
       border-radius: 4px;
       white-space: nowrap;
       text-transform: uppercase;
@@ -1388,57 +1485,87 @@
       z-index: 1000;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 1.25rem 1rem;
+      overflow-y: auto;
     }
 
     .modal-content {
       background: var(--panel-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 2rem;
-      max-width: 550px;
+      padding: 1rem 1.25rem;
+      max-width: 520px;
       width: 100%;
+      max-height: calc(100vh - 2.5rem);
+      margin: auto;
+      overflow-y: auto;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
       border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
     }
 
     .modal-title {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: var(--text-white);
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .close-btn {
       background: none;
       border: none;
       color: var(--text-gray);
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       cursor: pointer;
+      line-height: 1;
     }
 
     .modal-form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.32rem;
+      width: 100%;
+    }
+
+    .modal-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      width: 100%;
+      max-width: 100%;
+      flex: 1 1 auto;
+    }
+
+    .form-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-dark-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     .input-field {
       background: var(--bg-color);
       border: 1px solid #333;
       color: var(--text-white);
-      padding: 0.75rem;
+      padding: 0.42rem 0.65rem;
       border-radius: 6px;
       font-family: var(--font-main);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     /* Ad Banner Slot */
@@ -1803,7 +1930,7 @@
           <div class="panel-title">
             ⚙️ Hardware & Electricity Cost Profile
           </div>
-          <span class="live-feed-badge" id="liveProtocolCount">12 Protocols Indexed</span>
+          <span class="live-feed-badge" id="liveProtocolCount"><span class="pulse-dot"></span> <span>13 Protocols Indexed</span></span>
         </div>
 
         <div class="form-grid-layout">
@@ -1846,13 +1973,26 @@
                 <option value="2">2 Core (Raspberry Pi / Low Power)</option>
                 <option value="4" selected>4 Cores (Quad-Core x86/ARM)</option>
                 <option value="8">8 Cores (Octa-Core Mid-Server)</option>
-                <option value="16">16+ Cores (High-Performance Dedicated)</option>
+                <option value="16">16 Cores (High-Perf Dedicated)</option>
+                <option value="32">32 Cores (Enterprise Server)</option>
               </select>
             </div>
           </div>
 
-          <!-- Bottom Row: Centered Electricity Rate & Est Power Draw -->
+          <!-- Bottom Row: GPU, Electricity Rate & Est Power Draw -->
           <div class="form-row-bottom">
+            <!-- GPU Accelerator Selector -->
+            <div class="form-group">
+              <label for="gpuSelect">GPU Accelerator</label>
+              <select id="gpuSelect">
+                <option value="none" selected>None / Integrated Graphics</option>
+                <option value="consumer_mid">Consumer GPU (RTX 3060/4060)</option>
+                <option value="consumer_high">High-End GPU (RTX 3090/4090)</option>
+                <option value="enterprise_mid">Enterprise AI GPU (L4/A10G)</option>
+                <option value="enterprise_high">Data Center GPU (A100/H100)</option>
+              </select>
+            </div>
+
             <!-- Electricity Rate -->
             <div class="form-group">
               <label for="electricityRate" id="electricityRateLabel">Electricity Rate ($/kWh)</label>
@@ -1960,21 +2100,77 @@
         <button class="close-btn" id="closeModalBtn">&times;</button>
       </div>
       <form class="modal-form" id="customNodeForm">
-        <input type="text" id="customName" class="input-field" placeholder="Protocol Name (e.g. Celestia Light Node)" required />
-        <select id="customCategory" class="input-field">
-          <option value="depin">DePIN & IoT</option>
-          <option value="l1l2">L1/L2 Protocols</option>
-          <option value="storage">Storage & Web3</option>
-          <option value="compute">Cloud & AI Compute</option>
-          <option value="privacy">Privacy & VPN</option>
-        </select>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-          <input type="number" id="customRam" class="input-field" placeholder="Min RAM (GB)" required />
-          <input type="text" id="customStorage" class="input-field" placeholder="Min Storage (e.g. 500GB SSD)" required />
+        <div class="form-group">
+          <label class="form-label" for="customName">Protocol Name</label>
+          <input type="text" id="customName" class="input-field" placeholder="e.g. Celestia Light Node" required />
         </div>
-        <input type="text" id="customRev" class="input-field" placeholder="Est Revenue (e.g. $20 - $50 / mo)" required />
-        <input type="text" id="customDesc" class="input-field" placeholder="Brief protocol summary..." required />
-        <button type="submit" class="scan-btn" style="margin-top: 0.5rem;">Save Protocol to Engine</button>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <div class="form-group">
+            <label class="form-label" for="customNodeType">Node Type</label>
+            <select id="customNodeType" class="input-field">
+              <option value="Full Validator">Full Validator</option>
+              <option value="RPC Node">RPC Node</option>
+              <option value="DePIN Gateway" selected>DePIN Gateway</option>
+              <option value="Storage Node">Storage Node</option>
+              <option value="Compute Provider">Compute Provider</option>
+              <option value="Search Indexer">Search Indexer</option>
+              <option value="p2p Relay">p2p Relay</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="customCategory">Category</label>
+            <select id="customCategory" class="input-field">
+              <option value="depin">DePIN & IoT</option>
+              <option value="l1l2">L1/L2 Protocols</option>
+              <option value="storage">Storage & Web3</option>
+              <option value="compute">Cloud & AI Compute</option>
+              <option value="privacy">Privacy & VPN</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <div class="form-group">
+            <label class="form-label" for="customRam">Min RAM</label>
+            <input type="number" id="customRam" class="input-field" placeholder="e.g. 16 (GB)" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="customStorage">Min Storage</label>
+            <input type="text" id="customStorage" class="input-field" placeholder="e.g. 500GB SSD" required />
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <div class="form-group">
+            <label class="form-label" for="customCores">CPU Cores</label>
+            <select id="customCores" class="input-field">
+              <option value="2">2 CPU Cores</option>
+              <option value="4" selected>4 CPU Cores</option>
+              <option value="8">8 CPU Cores</option>
+              <option value="16">16 CPU Cores</option>
+              <option value="32">32 CPU Cores</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="customGpu">GPU Requirement</label>
+            <select id="customGpu" class="input-field">
+              <option value="none" selected>None / Integrated</option>
+              <option value="consumer_mid">Consumer (RTX 3060/4060)</option>
+              <option value="consumer_high">High-End (RTX 3090/4090)</option>
+              <option value="enterprise_mid">Enterprise AI (L4/A10G)</option>
+              <option value="enterprise_high">Data Center (A100/H100)</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+          <div class="form-group">
+            <label class="form-label" for="customRev">Estimated Revenue</label>
+            <input type="text" id="customRev" class="input-field" placeholder="e.g. $20 - $50 / mo" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="customDesc">Protocol Summary</label>
+            <input type="text" id="customDesc" class="input-field" placeholder="e.g. Decentralized oracle network" required />
+          </div>
+        </div>
+        <button type="submit" class="scan-btn" style="margin-top: 0.35rem; padding: 0.6rem 1rem;">Save Protocol to Engine</button>
       </form>
     </div>
   </div>
@@ -2010,6 +2206,27 @@
           <span id="feedbackSubmitText">Send Feedback</span>
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal for Social Card Preview -->
+  <div class="modal-overlay" id="ogPreviewModal" style="display: none;">
+    <div class="modal-content" style="max-width: 860px; width: 92%;">
+      <div class="modal-header">
+        <div class="modal-title">🖼️ Open Graph Social Preview Card</div>
+        <button class="close-btn" id="closeOgPreviewModalBtn" type="button">&times;</button>
+      </div>
+      <div style="text-align: center; padding: 1rem 0;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          This 1200x630 banner is automatically embedded in <code>&lt;meta property="og:image"&gt;</code> and <code>&lt;meta name="twitter:image"&gt;</code> for social sharing preview cards on Twitter / X, Discord, LinkedIn, Telegram, and Facebook.
+        </p>
+        <img src="og_image.png" alt="Metanode Infra Social Card Banner" style="max-width: 100%; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: block; margin: 0 auto;" />
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="og_image.png" target="_blank" class="scan-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; padding: 0.6rem 1.25rem;">
+            <span>↗️ Open Raw Image File</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2078,19 +2295,21 @@
       {
         id: 'helium',
         name: 'Helium IOT Node',
+        nodeType: 'gateway',
+        nodeTypeLabel: 'DePIN Gateway',
         category: 'depin',
         categoryLabel: 'DePIN & IoT',
-        minRamGB: 4,
-        minStorageGB: 64,
-        minCores: 2,
+        minRamGB: 1,
+        minStorageGB: 32,
+        minCores: 1,
         minBandwidth: 10,
         powerWatts: 5,
-        minSpecsText: '4GB RAM, 64GB Storage',
+        minSpecsText: '1GB RAM, 32GB Storage',
         baseToken: 'HNT',
         tokenAmountRange: [3, 8],
         revenueText: '$15 - $35 / month',
-        description: 'Provide LoRaWAN wireless coverage for IoT hardware sensors and earn HNT tokens.',
-        isMatch: (ram, storageVal) => ram >= 4,
+        description: 'Provide LoRaWAN wireless coverage for IoT hardware sensors and earn HNT tokens on Solana.',
+        isMatch: (ram, storageVal) => ram >= 1,
         dockerCmd: 'docker run -d --name helium-miner --net=host -v /var/helium:/var/data helium/miner:latest',
         stakingReq: 'None (LoRaWAN Hotspot Gateway)',
         docsUrl: 'https://docs.helium.com/mine-hnt/'
@@ -2098,6 +2317,8 @@
       {
         id: 'flux',
         name: 'Flux Node (Cumulus)',
+        nodeType: 'compute',
+        nodeTypeLabel: 'Compute Provider',
         category: 'compute',
         categoryLabel: 'Cloud & AI Compute',
         minRamGB: 8,
@@ -2118,19 +2339,21 @@
       {
         id: 'mysterium',
         name: 'Mysterium Network Node',
+        nodeType: 'relay',
+        nodeTypeLabel: 'p2p Relay',
         category: 'privacy',
         categoryLabel: 'Privacy & VPN',
-        minRamGB: 8,
-        minStorageGB: 500,
-        minCores: 2,
+        minRamGB: 2,
+        minStorageGB: 30,
+        minCores: 1,
         minBandwidth: 100,
         powerWatts: 10,
-        minSpecsText: '8GB RAM, 500GB SSD',
+        minSpecsText: '2GB RAM, 30GB Storage',
         baseToken: 'MYST',
         tokenAmountRange: [20, 50],
         revenueText: '$18 - $45 / month',
-        description: 'Peer-to-peer decentralized VPN residential proxy sharing idle bandwidth.',
-        isMatch: (ram, storageVal) => (ram === 16 && storageVal.includes('1TB')) || (ram >= 8 && !storageVal.includes('64GB') && !storageVal.includes('128GB') && !storageVal.includes('240GB')),
+        description: 'Peer-to-peer decentralized VPN residential proxy sharing idle bandwidth. Lightweight & Raspberry Pi compatible.',
+        isMatch: (ram, storageVal) => ram >= 2,
         dockerCmd: 'docker run --cap-add=NET_ADMIN -d -p 4449:4449 -v myst-data:/var/lib/mysterium-node mysteriumnetwork/myst:latest',
         stakingReq: 'None (Registration fee ~ $1)',
         docsUrl: 'https://docs.mysterium.network/node-runners/setup/'
@@ -2138,19 +2361,21 @@
       {
         id: 'presearch',
         name: 'Presearch Node',
+        nodeType: 'indexer',
+        nodeTypeLabel: 'Search Indexer',
         category: 'privacy',
-        categoryLabel: 'Search Indexing',
-        minRamGB: 4,
-        minStorageGB: 500,
-        minCores: 2,
+        categoryLabel: 'Privacy & VPN',
+        minRamGB: 2,
+        minStorageGB: 20,
+        minCores: 1,
         minBandwidth: 20,
         powerWatts: 10,
-        minSpecsText: '4GB RAM, 500GB SSD',
+        minSpecsText: '2GB RAM, 20GB Storage',
         baseToken: 'PRE',
         tokenAmountRange: [600, 1500],
         revenueText: '$15 - $40 / month',
         description: 'Decentralized search engine indexing node routing anonymous queries.',
-        isMatch: (ram, storageVal) => (ram === 16 && storageVal.includes('1TB')) || (ram >= 4 && !storageVal.includes('64GB') && !storageVal.includes('128GB') && !storageVal.includes('240GB')),
+        isMatch: (ram, storageVal) => ram >= 2,
         dockerCmd: 'docker run -d --name presearch-node --restart=always -e REGISTRATION_CODE=YOUR_CODE presearch/node',
         stakingReq: '4,000 PRE Token Stake',
         docsUrl: 'https://docs.presearch.io/nodes/setup'
@@ -2158,8 +2383,10 @@
       {
         id: 'ethereum',
         name: 'Ethereum Validator Node',
+        nodeType: 'validator',
+        nodeTypeLabel: 'Full Validator',
         category: 'l1l2',
-        categoryLabel: 'L1 Proof-of-Stake',
+        categoryLabel: 'L1/L2 Protocols',
         minRamGB: 32,
         minStorageGB: 2000,
         minCores: 4,
@@ -2178,8 +2405,10 @@
       {
         id: 'solana',
         name: 'Solana RPC Node (Testnet)',
+        nodeType: 'rpc',
+        nodeTypeLabel: 'RPC Node',
         category: 'l1l2',
-        categoryLabel: 'High-Performance RPC',
+        categoryLabel: 'L1/L2 Protocols',
         minRamGB: 64,
         minStorageGB: 2000,
         minCores: 16,
@@ -2199,6 +2428,8 @@
       {
         id: 'akash',
         name: 'Akash Network Compute Provider',
+        nodeType: 'compute',
+        nodeTypeLabel: 'Compute Provider',
         category: 'compute',
         categoryLabel: 'Cloud & AI Compute',
         minRamGB: 16,
@@ -2219,6 +2450,8 @@
       {
         id: 'storj',
         name: 'Storj Storage Node',
+        nodeType: 'storage',
+        nodeTypeLabel: 'Storage Node',
         category: 'storage',
         categoryLabel: 'Storage & Web3',
         minRamGB: 4,
@@ -2239,6 +2472,8 @@
       {
         id: 'arweave',
         name: 'Arweave Storage Miner',
+        nodeType: 'storage',
+        nodeTypeLabel: 'Storage Node',
         category: 'storage',
         categoryLabel: 'Storage & Web3',
         minRamGB: 32,
@@ -2259,8 +2494,10 @@
       {
         id: 'pocket',
         name: 'Pocket Network (POKT) Relayer',
+        nodeType: 'rpc',
+        nodeTypeLabel: 'RPC Node',
         category: 'depin',
-        categoryLabel: 'RPC Relayer',
+        categoryLabel: 'DePIN & IoT',
         minRamGB: 16,
         minStorageGB: 1000,
         minCores: 4,
@@ -2279,8 +2516,10 @@
       {
         id: 'avalanche',
         name: 'Avalanche Validator',
+        nodeType: 'validator',
+        nodeTypeLabel: 'Full Validator',
         category: 'l1l2',
-        categoryLabel: 'L1 Proof-of-Stake',
+        categoryLabel: 'L1/L2 Protocols',
         minRamGB: 16,
         minStorageGB: 1000,
         minCores: 8,
@@ -2299,22 +2538,46 @@
       {
         id: 'near',
         name: 'NEAR Protocol Validator',
+        nodeType: 'validator',
+        nodeTypeLabel: 'Full Validator',
         category: 'l1l2',
-        categoryLabel: 'L1 Proof-of-Stake',
-        minRamGB: 16,
+        categoryLabel: 'L1/L2 Protocols',
+        minRamGB: 8,
         minStorageGB: 500,
-        minCores: 8,
+        minCores: 4,
         minBandwidth: 100,
         powerWatts: 50,
-        minSpecsText: '16GB RAM, 500GB SSD',
+        minSpecsText: '8GB RAM, 500GB SSD',
         baseToken: 'NEAR',
         tokenAmountRange: [8, 25],
         revenueText: '$40 - $135 / month',
-        description: 'Sharded proof-of-stake node processing cross-shard transactions on NEAR.',
-        isMatch: (ram, storageVal) => ram >= 16 && !storageVal.includes('64GB') && !storageVal.includes('128GB') && !storageVal.includes('240GB'),
+        description: 'Sharded proof-of-stake node processing cross-shard transactions on NEAR. Supports mainnet validators or micro-validation via Meta Pool Node Studio.',
+        isMatch: (ram, storageVal) => ram >= 8 && !storageVal.includes('64GB') && !storageVal.includes('128GB'),
         dockerCmd: 'neard run --home /root/.near',
-        stakingReq: 'Seat Price in NEAR Tokens',
+        stakingReq: 'Seat Price NEAR (or Meta Pool Node Studio mobile/micro validator)',
         docsUrl: 'https://docs.near.org/nodes/run-a-node'
+      },
+      {
+        id: 'filecoin-station',
+        name: 'Filecoin Station Node',
+        nodeType: 'storage',
+        nodeTypeLabel: 'Storage / Retrieval',
+        category: 'storage',
+        categoryLabel: 'Storage & Web3',
+        minRamGB: 8,
+        minStorageGB: 100,
+        minCores: 2,
+        minBandwidth: 50,
+        powerWatts: 15,
+        minSpecsText: '8GB RAM, 100GB SSD',
+        baseToken: 'FIL',
+        tokenAmountRange: [2, 6],
+        revenueText: '$12 - $35 / month',
+        description: 'Lightweight Filecoin network participant serving retrieval deals and node telemetry.',
+        isMatch: (ram, storageVal) => ram >= 8,
+        dockerCmd: 'docker run -d --name filecoin-station filecoin/station:latest',
+        stakingReq: 'None',
+        docsUrl: 'https://docs.filecoin.io/'
       }
     ];
 
@@ -2340,6 +2603,7 @@
     const ramSelect = document.getElementById('ramSelect');
     const storageSelect = document.getElementById('storageSelect');
     const cpuSelect = document.getElementById('cpuSelect');
+    const gpuSelect = document.getElementById('gpuSelect');
     const electricityRate = document.getElementById('electricityRate');
     const electricityRateLabel = document.getElementById('electricityRateLabel');
     const powerWatts = document.getElementById('powerWatts');
@@ -2503,28 +2767,35 @@
       const ram = ramSelect.value;
       const storage = storageSelect.value;
       const cpu = cpuSelect.value;
+      const gpu = gpuSelect ? gpuSelect.value : 'none';
       const curr = getCurrencyInfo();
       const powerCost = getPowerCostMonthly().toFixed(2);
       if (electricityRateLabel) {
         electricityRateLabel.textContent = `Electricity Rate (${curr.symbol}/kWh)`;
       }
-      summaryText.textContent = `${ram}GB RAM • ${storage} • ${cpu} Cores • ${curr.symbol}${electricityRate.value}/kWh (${curr.symbol}${powerCost}/mo power)`;
+      let gpuText = '';
+      if (gpu !== 'none' && gpuSelect && gpuSelect.selectedIndex >= 0) {
+        gpuText = ` • GPU: ${gpuSelect.options[gpuSelect.selectedIndex].text.split('(')[0].trim()}`;
+      }
+      summaryText.textContent = `${ram}GB RAM • ${storage} • ${cpu} Cores${gpuText} • ${curr.symbol}${electricityRate.value}/kWh (${curr.symbol}${powerCost}/mo power)`;
       updateStackerUI();
       if (scanBtn && !scanBtn.classList.contains('is-scanning') && !scanBtn.classList.contains('is-complete')) {
         setScanBtnState('rescan');
       }
     }
 
-    [ramSelect, storageSelect, cpuSelect, electricityRate, powerWatts].forEach(el => {
-      el.addEventListener('input', updateSummary);
-      el.addEventListener('change', updateSummary);
+    [ramSelect, storageSelect, cpuSelect, gpuSelect, electricityRate, powerWatts].forEach(el => {
+      if (el) {
+        el.addEventListener('input', updateSummary);
+        el.addEventListener('change', updateSummary);
+      }
     });
 
     if (currencySelect) {
       currencySelect.addEventListener('change', () => {
         updateTickerBar();
         updateSummary();
-        performScan();
+        performScan(true);
       });
     }
 
@@ -2547,7 +2818,7 @@
 
           updateTickerBar();
           if (priceSyncStatus) priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Live Prices Synced (${new Date().toLocaleTimeString()})`;
-          performScan();
+          performScan(true);
         }
       } catch (err) {
         if (priceSyncStatus) priceSyncStatus.innerHTML = `<span class="pulse-dot"></span> Using Cached Market Rates`;
@@ -2646,13 +2917,13 @@
         stackedNodeIds.push(nodeId);
       }
       updateStackerUI();
-      performScan();
+      performScan(true);
     };
 
     clearStackBtn.addEventListener('click', () => {
       stackedNodeIds = [];
       updateStackerUI();
-      performScan();
+      performScan(true);
     });
 
     // Share Config Button
@@ -2661,6 +2932,7 @@
       url.searchParams.set('ram', ramSelect.value);
       url.searchParams.set('storage', storageSelect.value);
       url.searchParams.set('cpu', cpuSelect.value);
+      if (gpuSelect) url.searchParams.set('gpu', gpuSelect.value);
       url.searchParams.set('rate', electricityRate.value);
       url.searchParams.set('watts', powerWatts.value);
       url.searchParams.set('curr', currencySelect ? currencySelect.value : 'USD');
@@ -2698,6 +2970,7 @@
       url.searchParams.set('ram', ramSelect.value);
       url.searchParams.set('storage', storageSelect.value);
       url.searchParams.set('cpu', cpuSelect.value);
+      if (gpuSelect) url.searchParams.set('gpu', gpuSelect.value);
       url.searchParams.set('rate', electricityRate.value);
       url.searchParams.set('watts', powerWatts.value);
       url.searchParams.set('curr', currencySelect ? currencySelect.value : 'USD');
@@ -2728,6 +3001,7 @@
       const ram = getParam('ram');
       const storage = getParam('storage');
       const cpu = getParam('cpu');
+      const gpu = getParam('gpu');
       const rate = getParam('rate');
       const watts = getParam('watts');
       const curr = getParam('curr');
@@ -2737,6 +3011,7 @@
       if (ram) ramSelect.value = ram;
       if (storage) storageSelect.value = storage;
       if (cpu) cpuSelect.value = cpu;
+      if (gpu && gpuSelect) gpuSelect.value = gpu;
       if (rate) electricityRate.value = rate;
       if (watts) powerWatts.value = watts;
       if (curr && currencySelect) {
@@ -2800,18 +3075,15 @@
     }
 
     // Perform Scanning & Filtering
-    function performScan() {
-      setScanBtnState('scanning');
+    function performScan(isInstant = false) {
       updateModeUI();
       const ram = parseInt(ramSelect.value, 10);
       const storageVal = storageSelect.value;
       const cpu = parseInt(cpuSelect.value, 10);
+      const gpu = gpuSelect ? gpuSelect.value : 'none';
       const sortBy = sortSelect.value;
 
-      if (resultsGrid) resultsGrid.style.display = 'none';
-      if (scannerLoader) scannerLoader.style.display = 'block';
-
-      setTimeout(() => {
+      const runScanLogic = () => {
         if (scannerLoader) scannerLoader.style.display = 'none';
         if (resultsGrid) resultsGrid.style.display = 'grid';
 
@@ -2833,24 +3105,29 @@
           sharedNodeBanner.style.display = 'none';
         }
 
+        if (liveProtocolCount) {
+          liveProtocolCount.innerHTML = `<span class="pulse-dot"></span> <span>${currentNetworks.length} Protocols Indexed</span>`;
+        }
+
         // Filter matched
         let matched = currentNetworks.filter(node => {
           if (focusedNodeId) {
             return node.id === focusedNodeId;
           }
 
-          if (showAllMode) {
-            return true;
-          }
-
-          // Category filter
+          // Category filter applies to both Spec Matching mode & Show All mode
           if (activeCategory !== 'all' && node.category !== activeCategory) {
             return false;
           }
 
+          // In Show All Mode, bypass hardware spec restrictions
+          if (showAllMode) {
+            return true;
+          }
+
           // Core matching rules
           if (node.isMatch) {
-            return node.isMatch(ram, storageVal, cpu);
+            return node.isMatch(ram, storageVal, cpu, gpu);
           }
 
           return ram >= node.minRamGB;
@@ -2871,19 +3148,30 @@
           matched.sort((a, b) => getNetMax(b) - getNetMax(a));
         }
 
-        renderResults(matched, ram, storageVal, cpu);
-        setScanBtnState('complete', matched.length);
+        renderResults(matched, ram, storageVal, cpu, gpu, isInstant);
+        if (!isInstant) {
+          setScanBtnState('complete', matched.length);
+        }
 
         if (matchCount) {
           matchCount.classList.remove('match-count-highlight');
           void matchCount.offsetWidth;
           matchCount.classList.add('match-count-highlight');
         }
-      }, 350);
+      };
+
+      if (isInstant) {
+        runScanLogic();
+      } else {
+        setScanBtnState('scanning');
+        if (resultsGrid) resultsGrid.style.display = 'none';
+        if (scannerLoader) scannerLoader.style.display = 'block';
+        setTimeout(runScanLogic, 350);
+      }
     }
 
     // Render Cards
-    function renderResults(networks, ram, storageVal, cpu = 4) {
+    function renderResults(networks, ram, storageVal, cpu = 4, gpu = 'none', isInstant = false) {
       liveProtocolCount.textContent = `${currentNetworks.length} Protocols Indexed`;
       matchCount.textContent = `${networks.length} ${networks.length === 1 ? 'Node' : 'Nodes'} Found`;
       resultsGrid.innerHTML = '';
@@ -2902,6 +3190,10 @@
 
       const powerCost = getPowerCostMonthly();
       const curr = getCurrencyInfo();
+
+      const userGpuText = (gpuSelect && gpu !== 'none' && gpuSelect.selectedIndex >= 0)
+        ? ` • ${gpuSelect.options[gpuSelect.selectedIndex].text.split('(')[0].replace('GPU:', '').trim()}`
+        : '';
 
       networks.forEach(node => {
         const warningMessage = node.getWarning ? node.getWarning(ram, storageVal) : null;
@@ -2932,13 +3224,17 @@
 
         const minStorageStr = node.minStorageGB >= 1000 ? `${node.minStorageGB/1000}TB` : `${node.minStorageGB}GB`;
         const minCoresStr = node.minCores ? `${node.minCores} CPU Cores` : '2 CPU Cores';
-        const isHardwareSufficient = node.isMatch ? node.isMatch(ram, storageVal, cpu) : ram >= node.minRamGB;
+        const minGpuStr = (node.minGpu && node.minGpu !== 'none') ? ` • GPU: ${node.minGpuLabel || node.minGpu}` : '';
+        const isHardwareSufficient = node.isMatch ? node.isMatch(ram, storageVal, cpu, gpu) : ram >= node.minRamGB;
 
         card.innerHTML = `
           <div class="card-top">
             <div class="card-header-row">
+              <div class="card-badges-row">
+                <span class="node-type-badge">${node.nodeTypeLabel || node.nodeType || 'Node'}</span>
+                <span class="node-category">${node.categoryLabel || node.category}</span>
+              </div>
               <h3 class="node-title">${node.name}</h3>
-              <span class="node-category">${node.categoryLabel || node.category}</span>
             </div>
 
             <p class="node-desc">${node.description}</p>
@@ -2946,12 +3242,12 @@
             <div class="spec-info-stack">
               <div class="info-row">
                 <span class="info-row-label">MIN PROTOCOL SPEC</span>
-                <span class="info-row-val">${node.minRamGB}GB RAM • ${minStorageStr} SSD • ${minCoresStr}</span>
+                <span class="info-row-val">${node.minRamGB}GB RAM • ${minStorageStr} SSD • ${minCoresStr}${minGpuStr}</span>
               </div>
               <div class="info-row">
                 <span class="info-row-label">YOUR SCANNED RIG</span>
                 <span class="info-row-val" style="color: var(--accent-green); font-weight: 700;">
-                  ${ram}GB RAM • ${storageVal} • ${cpu} Cores
+                  ${ram}GB RAM • ${storageVal} • ${cpu} Cores${userGpuText}
                 </span>
               </div>
               <div class="info-row">
@@ -3016,7 +3312,7 @@
 
         resultsGrid.appendChild(card);
 
-        if (focusedNodeId && node.id === focusedNodeId) {
+        if (!isInstant && focusedNodeId && node.id === focusedNodeId) {
           setTimeout(() => {
             card.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }, 200);
@@ -3043,7 +3339,8 @@
       if (showAllMode) {
         if (showAllProtocolsBtn) {
           showAllProtocolsBtn.classList.add('active');
-          showAllProtocolsBtn.innerHTML = `✓ Showing All Protocols (${currentNetworks.length})`;
+          const catSuffix = activeCategory !== 'all' ? ` (${document.querySelector(`.tab-btn[data-cat="${activeCategory}"]`)?.textContent || activeCategory})` : '';
+          showAllProtocolsBtn.innerHTML = `✓ Showing All Protocols${catSuffix}`;
         }
         if (sortSelect) {
           sortSelect.classList.remove('active');
@@ -3075,9 +3372,8 @@
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
         activeCategory = e.target.getAttribute('data-cat');
-        showAllMode = false;
         updateModeUI();
-        performScan();
+        performScan(true);
       }
     });
 
@@ -3094,32 +3390,41 @@
           focusedNodeId = null;
         }
         updateModeUI();
-        performScan();
+        performScan(true);
       });
     }
 
-    // Dropdown Event Listeners (turns off Show All Protocols on interaction)
+    // Dropdown Event Listeners (turns off Show All Protocols on interaction/change)
     if (sortSelect) {
-      const handleDropdownInteraction = () => {
+      const exitShowAllOnInteract = () => {
         if (showAllMode) {
           showAllMode = false;
           updateModeUI();
-          performScan();
-        } else {
-          updateModeUI();
+          performScan(true);
         }
       };
 
-      sortSelect.addEventListener('mousedown', handleDropdownInteraction);
-      sortSelect.addEventListener('focus', handleDropdownInteraction);
+      sortSelect.addEventListener('mousedown', exitShowAllOnInteract);
+      sortSelect.addEventListener('touchstart', exitShowAllOnInteract);
       sortSelect.addEventListener('change', () => {
         showAllMode = false;
         updateModeUI();
-        performScan();
+        performScan(true);
       });
     }
 
-    if (scanBtn) scanBtn.addEventListener('click', performScan);
+    if (scanBtn) {
+      scanBtn.addEventListener('click', () => {
+        showAllMode = false;
+        focusedNodeId = null;
+        updateModeUI();
+        performScan(false);
+        const scanStatusHeader = document.querySelector('.scan-status-header') || resultsGrid;
+        if (scanStatusHeader) {
+          scanStatusHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
     if (refreshPricesBtn) refreshPricesBtn.addEventListener('click', fetchLivePrices);
 
     // Add Custom Node Modal Handlers
@@ -3141,10 +3446,27 @@
       closeFeedbackModalBtn.addEventListener('click', () => feedbackModal.style.display = 'none');
     }
 
+    // Social Card Banner Modal Handlers
+    const ogPreviewModal = document.getElementById('ogPreviewModal');
+    const previewOgCardLink = document.getElementById('previewOgCardLink');
+    const closeOgPreviewModalBtn = document.getElementById('closeOgPreviewModalBtn');
+    if (previewOgCardLink && ogPreviewModal) {
+      previewOgCardLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        ogPreviewModal.style.display = 'flex';
+      });
+    }
+    if (closeOgPreviewModalBtn && ogPreviewModal) {
+      closeOgPreviewModalBtn.addEventListener('click', () => {
+        ogPreviewModal.style.display = 'none';
+      });
+    }
+
     // Overlay click to close modals
     window.addEventListener('click', (e) => {
       if (addNodeModal && e.target === addNodeModal) addNodeModal.style.display = 'none';
       if (feedbackModal && e.target === feedbackModal) feedbackModal.style.display = 'none';
+      if (ogPreviewModal && e.target === ogPreviewModal) ogPreviewModal.style.display = 'none';
     });
 
     // Feedback Form Submission via Web3Forms
@@ -3180,7 +3502,7 @@
             feedbackStatus.style.background = 'rgba(0, 200, 83, 0.15)';
             feedbackStatus.style.border = '1px solid var(--accent-green)';
             feedbackStatus.style.color = 'var(--accent-green)';
-            feedbackStatus.innerHTML = '🎉 <strong>Thank You!</strong> Your feedback has been sent directly to metapoolmike@gmail.com.';
+            feedbackStatus.innerHTML = '🎉 <strong>Thank You!</strong> Your feedback has been submitted successfully.';
             
             feedbackForm.reset();
             setTimeout(() => {
@@ -3207,24 +3529,50 @@
       e.preventDefault();
       const name = document.getElementById('customName').value;
       const cat = document.getElementById('customCategory').value;
+      const nodeTypeElem = document.getElementById('customNodeType');
+      const nodeTypeVal = nodeTypeElem ? nodeTypeElem.value : 'Custom Node';
       const ram = parseInt(document.getElementById('customRam').value, 10);
       const storage = document.getElementById('customStorage').value;
+      const cores = parseInt(document.getElementById('customCores').value, 10) || 4;
+      const gpu = document.getElementById('customGpu').value || 'none';
       const rev = document.getElementById('customRev').value;
       const desc = document.getElementById('customDesc').value;
+
+      const gpuSelectElem = document.getElementById('customGpu');
+      const gpuLabel = (gpu !== 'none' && gpuSelectElem && gpuSelectElem.selectedIndex >= 0)
+        ? gpuSelectElem.options[gpuSelectElem.selectedIndex].text.replace('GPU: ', '')
+        : 'None';
+
+      const CATEGORY_MAP = {
+        'depin': 'DePIN & IoT',
+        'l1l2': 'L1/L2 Protocols',
+        'storage': 'Storage & Web3',
+        'compute': 'Cloud & AI Compute',
+        'privacy': 'Privacy & VPN'
+      };
 
       const newNode = {
         id: 'custom-' + Date.now(),
         name,
+        nodeType: nodeTypeVal,
+        nodeTypeLabel: nodeTypeVal,
         category: cat,
-        categoryLabel: cat.toUpperCase(),
+        categoryLabel: CATEGORY_MAP[cat] || cat.toUpperCase(),
         minRamGB: ram,
         minStorageGB: 500,
-        minSpecsText: `${ram}GB RAM, ${storage}`,
+        minCores: cores,
+        minGpu: gpu,
+        minGpuLabel: gpuLabel,
+        minSpecsText: `${ram}GB RAM, ${storage}, ${cores} Cores`,
         revenueText: rev,
         description: desc,
         dockerCmd: `docker run -d --name ${name.toLowerCase().replace(/\s+/g, '-')} ${name.toLowerCase().replace(/\s+/g, '-')}:latest`,
         stakingReq: 'See protocol documentation',
-        isMatch: (userRam) => userRam >= ram
+        isMatch: (userRam, userStorage, userCpu, userGpu) => {
+          if (userRam < ram) return false;
+          if (userCpu < cores) return false;
+          return true;
+        }
       };
 
       currentNetworks.push(newNode);
@@ -3255,7 +3603,7 @@
       if (confirm('Reset protocol database to default specs?')) {
         localStorage.removeItem('metanode_custom_networks');
         currentNetworks = [...INITIAL_NETWORKS];
-        performScan();
+        performScan(true);
       }
     });
 
@@ -3263,7 +3611,7 @@
     initCustomCurrencyDropdown();
     loadHashParams();
     updateSummary();
-    performScan();
+    performScan(true);
     fetchLivePrices();
   </script>
 
